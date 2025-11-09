@@ -1,0 +1,33 @@
+{
+  "name": "thai-wordcut-js",
+  "version": "1.0.0",
+  "description": "Thai word breaker/segmentation library for Node.js",
+  "main": "wordcut.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "thai",
+    "wordcut",
+    "word-breaker",
+    "segmentation",
+    "nlp",
+    "thai-language",
+    "text-processing"
+  ],
+  "author": {
+    "name": "beambeambeam",
+    "email": "supawitmarayat@gmail.com"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/beambeambeam/thai-wordcut-js.git"
+  },
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "dependencies": {
+    "underscore": "^1.13.6"
+  }
+}
