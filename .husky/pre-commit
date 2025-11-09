@@ -1,0 +1,2 @@
+# lint-staged will be enabled when Biome is configured
+# pnpm lint-staged

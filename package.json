@@ -4,8 +4,12 @@
   "description": "Thai word breaker/segmentation library for Node.js",
   "main": "wordcut.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky",
+    "commitlint": "commitlint --edit",
+    "lint-staged": "lint-staged"
   },
+  "lint-staged": {},
   "keywords": [
     "thai",
     "wordcut",
@@ -29,5 +33,11 @@
   },
   "dependencies": {
     "underscore": "^1.13.6"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^20.1.0",
+    "@commitlint/config-conventional": "^20.0.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.6"
   }
 }
