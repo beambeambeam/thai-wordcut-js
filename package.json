@@ -7,9 +7,17 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepare": "husky",
     "commitlint": "commitlint --edit",
-    "lint-staged": "lint-staged"
+    "lint-staged": "lint-staged",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "format": "biome format --write .",
+    "biome:ci": "biome ci ."
   },
-  "lint-staged": {},
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,json,jsonc}": [
+      "biome check --write"
+    ]
+  },
   "keywords": [
     "thai",
     "wordcut",
@@ -35,6 +43,7 @@
     "underscore": "^1.13.6"
   },
   "devDependencies": {
+    "@biomejs/biome": "2.3.4",
     "@commitlint/cli": "^20.1.0",
     "@commitlint/config-conventional": "^20.0.0",
     "husky": "^9.1.7",
