@@ -7,10 +7,6 @@ settings:
 importers:
 
   .:
-    dependencies:
-      underscore:
-        specifier: ^1.13.6
-        version: 1.13.7
     devDependencies:
       '@biomejs/biome':
         specifier: 2.3.4
@@ -579,9 +575,6 @@ packages:
     engines: {node: '>=14.17'}
     hasBin: true
 
-  underscore@1.13.7:
-    resolution: {integrity: sha512-GMXzWtsc57XAtguZgaQViUOzs0KTkk8ojr3/xAxXLITqf/3EMwxC0inyETfDFjH/Krbhuep0HNbbjI9i/q3F3g==}
-
   undici-types@7.16.0:
     resolution: {integrity: sha512-Zz+aZWSj8LE6zoxD+xrjh4VfkIG8Ya6LvYkZqtUQGJPZjYl53ypCaUwWqo7eI0x66KBGeRo+mlBEkMSeSZ38Nw==}
 
@@ -1130,8 +1123,6 @@ snapshots:
       is-number: 7.0.0
 
   typescript@5.9.3: {}
-
-  underscore@1.13.7: {}
 
   undici-types@7.16.0: {}
 
