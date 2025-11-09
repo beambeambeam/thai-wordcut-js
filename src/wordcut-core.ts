@@ -1,9 +1,16 @@
-var WordcutCore = {
-  buildPath: function (text) {
-    var path = this.pathSelector.createPath(),
-      leftBoundary = 0;
-    var i, ch, possiblePathInfos, selectedPath;
+import type { PathInfo, Range, WordcutCore } from "./types.js";
+
+export const WordcutCoreImpl = {
+  buildPath: function (this: WordcutCore, text: string): PathInfo[] {
+    const path = this.pathSelector.createPath();
+    let leftBoundary = 0;
+    let i: number;
+    let ch: string;
+    let possiblePathInfos: PathInfo[];
+    let selectedPath: PathInfo;
+
     this.acceptors.reset();
+
     for (i = 0; i < text.length; i++) {
       ch = text[i];
       this.acceptors.transit(ch);
@@ -25,14 +32,16 @@ var WordcutCore = {
     return path;
   },
 
-  pathToRanges: (path) => {
-    var e = path.length - 1,
-      ranges = [];
-    var info, s, r;
+  pathToRanges: (path: PathInfo[]): Range[] => {
+    let e = path.length - 1;
+    const ranges: Range[] = [];
+    let info: PathInfo;
+    let s: number;
+    let r: Range;
 
     while (e > 0) {
       info = path[e];
-      s = info.p;
+      s = info.p ?? 0;
 
       if (info.merge !== undefined && ranges.length > 0) {
         r = ranges[ranges.length - 1];
@@ -46,12 +55,12 @@ var WordcutCore = {
     return ranges.reverse();
   },
 
-  rangesToText: (text, ranges, delimiter) =>
+  rangesToText: (text: string, ranges: Range[], delimiter: string): string =>
     ranges.map((r) => text.substring(r.s, r.e)).join(delimiter),
 
-  cut: function (text, delimiter) {
-    var path = this.buildPath(text),
-      ranges = this.pathToRanges(path);
+  cut: function (this: WordcutCore, text: string, delimiter?: string): string {
+    const path = this.buildPath(text);
+    const ranges = this.pathToRanges(path);
     return this.rangesToText(
       text,
       ranges,
@@ -59,9 +68,13 @@ var WordcutCore = {
     );
   },
 
-  cutIntoRanges: function (text, noText) {
-    var path = this.buildPath(text),
-      ranges = this.pathToRanges(path);
+  cutIntoRanges: function (
+    this: WordcutCore,
+    text: string,
+    noText?: boolean,
+  ): Range[] {
+    const path = this.buildPath(text);
+    const ranges = this.pathToRanges(path);
 
     if (!noText) {
       ranges.forEach((r) => {
@@ -71,5 +84,3 @@ var WordcutCore = {
     return ranges;
   },
 };
-
-module.exports = WordcutCore;

@@ -1,12 +1,14 @@
-var WordRule = {
-  createAcceptor: (tag) => {
+import type { Acceptor, AcceptorTagMap, Rule } from "./types.js";
+
+const WordRule: Rule = {
+  createAcceptor: (tag: AcceptorTagMap): Acceptor | null => {
     if (tag.WORD_RULE) return null;
 
     return {
       strOffset: 0,
       isFinal: false,
-      transit: function (ch) {
-        var lch = ch.toLowerCase();
+      transit: function (ch: string): Acceptor {
+        const lch = ch.toLowerCase();
         if (lch >= "a" && lch <= "z") {
           this.isFinal = true;
           this.strOffset++;
@@ -23,15 +25,15 @@ var WordRule = {
   },
 };
 
-var SpaceRule = {
+const SpaceRule: Rule = {
   tag: "SPACE_RULE",
-  createAcceptor: (tag) => {
+  createAcceptor: (tag: AcceptorTagMap): Acceptor | null => {
     if (tag.SPACE_RULE) return null;
 
     return {
       strOffset: 0,
       isFinal: false,
-      transit: function (ch) {
+      transit: function (ch: string): Acceptor {
         if (ch === " " || ch === "\t" || ch === "\r" || ch === "\n") {
           this.isFinal = true;
           this.strOffset++;
@@ -41,19 +43,19 @@ var SpaceRule = {
         return this;
       },
       isError: false,
-      tag: SpaceRule.tag,
+      tag: "SPACE_RULE",
       w: 1,
       type: "SPACE_RULE",
     };
   },
 };
 
-var SingleSymbolRule = {
+const SingleSymbolRule: Rule = {
   tag: "SINSYM",
-  createAcceptor: (_tag) => ({
+  createAcceptor: (_tag: AcceptorTagMap): Acceptor => ({
     strOffset: 0,
     isFinal: false,
-    transit: function (ch) {
+    transit: function (ch: string): Acceptor {
       if (this.strOffset === 0 && ch.match(/^[()/-]$/)) {
         this.isFinal = true;
         this.strOffset++;
@@ -69,6 +71,6 @@ var SingleSymbolRule = {
   }),
 };
 
-var LatinRules = [WordRule, SpaceRule, SingleSymbolRule];
+export const LatinRules: Rule[] = [WordRule, SpaceRule, SingleSymbolRule];
 
-module.exports = LatinRules;
+export default LatinRules;
